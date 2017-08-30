@@ -26,13 +26,14 @@ def visualize(iteration, error, X, Y, ax):
     print("iteration %d, error %.5f" % (iteration, error))
     plt.pause(0.001)
 
-
 yaw = 0
 pitch = 0
 roll = 0
 x = 0
 y = 0
 z = 0
+rotation_offset = 0.05
+traslation_offset = 0.005
 
 fish = loadmat('./data/bunny.mat')
 X = fish['X']
@@ -61,34 +62,32 @@ def manage_key_pressed(event):
     print(event.key)
     global yaw, roll, pitch
     global x, y, z
+    global rotation_offset, traslation_offset
     if event.key == "i":
-        yaw += 0.05
+        x += traslation_offset
     elif event.key == "j":
-        yaw -= 0.05
+        x -= traslation_offset
     elif event.key == "o":
-        roll += 0.05
+        y += traslation_offset
     elif event.key == "k":
-        roll -= 0.05
+        y -= traslation_offset
     elif event.key == "p":
-        pitch += 0.05
+        z += traslation_offset
     elif event.key == "l":
-        pitch -= 0.05
+        z -= traslation_offset
     if event.key == "I":
-        x += 0.05
+        yaw += rotation_offset
     elif event.key == "J":
-        x -= 0.05
+        yaw -= rotation_offset
     elif event.key == "O":
-        y += 0.05
+        roll += rotation_offset
     elif event.key == "K":
-        y -= 0.05
+        roll -= rotation_offset
     elif event.key == "P":
-        z += 0.05
+        pitch += rotation_offset
     elif event.key == "L":
-        z -= 0.05
+        pitch -= rotation_offset
     redraw()
-
-
-
 
 def main():
     # draw
